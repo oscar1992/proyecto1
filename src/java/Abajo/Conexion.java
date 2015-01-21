@@ -16,8 +16,8 @@ import java.sql.SQLException;
 public class Conexion {
     Connection cone;
     String driver="com.mysql.jdbc.Driver";
-    String direccion="";
-    String usuario="";
+    String direccion="jdbc:mysql://localhost:3306/otri";
+    String usuario="root";
     String clave="";
     
     public Connection Ini_con() throws ClassNotFoundException, SQLException{

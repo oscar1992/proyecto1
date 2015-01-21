@@ -61,6 +61,7 @@ public class adm_registro {
             con.Fin_con();
             ret=true;
         }catch(Exception e){
+            System.out.println("ERROR: "+e);
             ret=false;
         }
         

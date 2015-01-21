@@ -1,6 +1,6 @@
 <%-- 
-    Document   : Error
-    Created on : 21/01/2015, 02:41:40 PM
+    Document   : Exito
+    Created on : 21/01/2015, 03:03:15 PM
     Author     : (°_°)
 --%>
 
@@ -12,6 +12,6 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>Error en la autenticación</h1>
+        <h1>Registro Correcto, Inicie sesión nuevamente</h1>
     </body>
 </html>

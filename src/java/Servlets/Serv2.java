@@ -44,9 +44,10 @@ public class Serv2 extends HttpServlet {
             String Estudios=request.getParameter("niv").toString();
             adm_registro obj=new adm_registro();
             if(obj.registro(Nombres, Correo, Nacimiento, Oficina, Movil, Institución, Estudios)){
-                response.sendRedirect("");
+                request.getSession().invalidate();
+                response.sendRedirect("Varios/Exito.jsp");
             }else{
-                response.sendRedirect("Varios/Error,jsp");
+                response.sendRedirect("Varios/Error.jsp");
             }
         } finally {
             out.close();
