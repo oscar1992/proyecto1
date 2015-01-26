@@ -24,7 +24,7 @@
             Nombres
             <input type="text" name="nom" value=""/><br>
             Correo
-            <input type="text" name="cor" value=""/><br>
+            <input type="text" name="cor" value="<%out.println(request.getSession().getAttribute("Correo"));%>"/><br>
             Fecha de Nacimiento
             <input type="text" name="nac" value=""/><br>
             Teléfono de Oficina
