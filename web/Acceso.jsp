@@ -25,10 +25,7 @@
             email<input type="text" name="email" value=""/>
             pass<input type="password" name="pass" value=""/>
             
-            <%
-                request.getSession().setAttribute("contra", request.getParameter("pass"));
-                request.getSession().setAttribute("correo", request.getParameter("email"));
-            %>
+            
             <input type="submit" name="sub" value="VAMOSSSS" onclick="envia()"/>
         </form>
 

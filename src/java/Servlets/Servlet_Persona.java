@@ -5,6 +5,8 @@
  */
 package Servlets;
 
+import Abajo.Persona;
+import Abajo.adm_registro;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -34,7 +36,13 @@ public class Servlet_Persona extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
         try {
-           String qq=request.getParameter("quien");
+            String qq=request.getParameter("quien");
+            System.out.println("qq: "+qq);
+            Persona pp=new Persona();
+            adm_registro adm=new adm_registro();
+            pp=adm.T_Persona(Integer.parseInt(qq));
+            request.getSession().setAttribute("Per", pp);
+            response.sendRedirect("Admin/Persona.jsp");
         } finally {
             out.close();
         }

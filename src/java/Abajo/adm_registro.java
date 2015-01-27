@@ -18,30 +18,26 @@ import java.util.logging.Logger;
  */
 public class adm_registro {
 
-    public boolean existe(String correo) {
-        boolean ret = false;
+    public Persona existe(String correo) {
+        Persona pp=new Persona();
         try {
-            int i = 0;
+            
             Conexion con = new Conexion();
             con.Ini_con();
             String sql = "select * from persona where Correo = '" + correo + "'";
             PreparedStatement st = (PreparedStatement) con.Ini_con().prepareStatement(sql);
             ResultSet rs = st.executeQuery();
             while (rs.next()) {
-                i++;
+                    pp=new Persona(rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8), rs.getInt(9), rs.getInt(1));
             }
-            if (i == 1) {
-                ret = true;
-            } else {
-                ret = false;
-            }
+           
             con.Fin_con();
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(adm_registro.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
             Logger.getLogger(adm_registro.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return ret;
+        return pp;
     }
 
     public boolean registro(String nombres, String correo, String nacimiento, String oficina, String movil, String institucion, String estudios) {
@@ -83,6 +79,7 @@ public class adm_registro {
                 pp = new Persona(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7), Integer.parseInt(rs.getString(8)), rs.getInt(9));
                 lista.add(pp);
             }
+            con.Fin_con();
         } catch (Exception e) {
             System.out.println("Error llenado de lista");
         }
@@ -102,9 +99,49 @@ public class adm_registro {
                 rr = new Rol(rs.getInt(1), rs.getString(2));
                 lista.add(rr);
             }
+            con.Fin_con();
         } catch (Exception e) {
             System.out.println("Error llenando la lista de roles");
         }
         return lista;
+    }
+    
+    public Persona T_Persona(int id){
+        try {
+            Persona pp = new Persona();
+            Conexion con = new Conexion();
+            con.Ini_con();
+            String sql = "select Nombres, Correo, Fecha_de_Nacimiento, Telefono_Oficina, Telefono_Movil, Institucion, Nivel_de_Estudios , id_rol , id from persona where id="+id;
+            PreparedStatement st = (PreparedStatement) con.Ini_con().prepareStatement(sql);
+            ResultSet rs = st.executeQuery();
+            while (rs.next()) {
+                pp = new Persona(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7), Integer.parseInt(rs.getString(8)), rs.getInt(9));
+                
+            }
+            con.Fin_con();
+            return  pp;
+        } catch (Exception e) {
+            System.out.println("Error llenado de lista");
+            return null;
+        }
+        
+    }
+    
+    public boolean I_Persona(String Nombre, String Correo, String Fecha_de_Nacimiento, String Telefono_Oficina, String Telefono_Movil, String Institución, String Nivel_de_Estudios, int Rol, int id){
+        boolean ret=false;
+        try {
+            Conexion con = new Conexion();
+            con.Ini_con();
+            String sql = "UPDATE otri.persona SET Nombres ='"+Nombre+"' , Correo = '"+Correo+"', Fecha_de_Nacimiento = '"+Fecha_de_Nacimiento+"', Telefono_Oficina = '"+Telefono_Oficina+"', Telefono_Movil = '"+Telefono_Movil+"', Institucion = '"+Institución+"', Nivel_de_Estudios = '"+Nivel_de_Estudios+"', id_rol = "+Rol+" WHERE id = "+id+";";
+            PreparedStatement st = (PreparedStatement) con.Ini_con().prepareStatement(sql);
+            st.executeUpdate();
+            con.Fin_con();
+            ret = true;
+        } catch (Exception e) {
+            System.out.println("ERROR: " + e);
+            ret = false;
+        }
+        
+        return ret;
     }
 }

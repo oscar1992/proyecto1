@@ -16,8 +16,11 @@
         <title>JSP Page</title>
         <script lang="javascript">
             
-            function quien(){
+            function jj(id){
                 
+                document.getElementById("qq").value=""+id;
+                //alert("id "+id);
+                //alert(document.getElementById("qq"));                
             }
             
             function envia() {
@@ -34,7 +37,7 @@
             lista2 = obj.L_Rol();
             lista = obj.L_Personas_rol();
         %>
-        <form >
+        <form onsubmit="return valida()" action="/Servlet_Persona" method="post">
             <table border="1">
                 <tr>
                     <th>Nombre</th>
@@ -57,12 +60,12 @@
                         }
                         %>
                     </td>
-                    <td><input type="submit" name="<%out.println(""+lista.get(i).getId());%>" value="Modificar"></td>
-                    <input type="hidden" name="quien" value="" id="qq"/>
+                    <td><input type="submit" name="<%out.println(""+lista.get(i).getId());%>" value="Modificar" onclick="jj('<%out.print(""+lista.get(i).getId());%>')"/></td>
+                    
                 </tr>
                 <%}%>
             </table>
-            
+            <input type="hidden" name="quien" value="" id="qq"/>
         </form>
     </body>
 </html>
