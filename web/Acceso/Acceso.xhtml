@@ -13,7 +13,16 @@
             <h:form>
                 <p:growl id="growl" life="2000"/>
                 <h:panelGrid columns="2">
-                    <p:inputText id="email" value="#{}"/>
+                    <p:row>
+                        <h:outputLabel value="Correo"/>
+                        <p:inputText id="email" value="#{ingreso.email}"/>
+                    </p:row>
+                    <p:row>
+                    <p:inputText id="pass" value="#{ingreso.passwd}"/>
+                    </p:row>
+                    <p:row>
+                    <p:commandButton value="Acceder" id="ajax" update="growl" actionListener="#{ingreso.ing()}" styleClass="ui-priority-primary"/>
+                    </p:row>
                 </h:panelGrid>
             </h:form>
         </h:body>
