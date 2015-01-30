@@ -14,7 +14,6 @@ import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
 import javax.faces.bean.ManagedBean;
 import javax.servlet.http.HttpServletResponse;
-import org.eclipse.persistence.internal.jpa.rs.metadata.model.SessionBeanCall;
 import org.netbeans.saas.google.GoogleAccountsService;
 import org.netbeans.saas.RestResponse;
 
