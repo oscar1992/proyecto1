@@ -14,6 +14,7 @@ import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
 import javax.faces.bean.ManagedBean;
 import javax.servlet.http.HttpServletResponse;
+import org.eclipse.persistence.internal.jpa.rs.metadata.model.SessionBeanCall;
 import org.netbeans.saas.google.GoogleAccountsService;
 import org.netbeans.saas.RestResponse;
 
@@ -37,32 +38,49 @@ public class Ingreso {
 
             RestResponse result = null;
             try {
-                result = GoogleAccountsService.accountsClientLogin(accountType, getEmail(), getPasswd(), service, source);
+                //System.out.println("coor: "+email);
+                //System.out.println("pass: "+passwd);
+                result = GoogleAccountsService.accountsClientLogin(accountType, email, passwd, service, source);
             } catch (IOException iOException) {
-                System.out.println("Error de Autenticación: " + iOException.getMessage());
+                mess();
+                System.out.println("Error de Autenticación: " + iOException.getMessage());                
             }
             System.out.println("Sigue?"+result.getResponseMessage());
                 if (result.getResponseCode() == 200) {
                     adm_registro obj = new adm_registro();
-                    Persona pp=obj.existe(getEmail());
+                    Persona pp=obj.existe(email);
+                    
                     if(pp!=null){
+                        System.out.println("pp: "+pp.getNombre());
                         FacesContext contex = FacesContext.getCurrentInstance();
+                        contex.getExternalContext().getSessionMap().put("Quien", pp) ;
                         contex.getExternalContext().redirect( "/Proyecto/Bandeja.jsp" );
                         //response.sendRedirect("Proyecto/Bandeja.jsp");
                     }else{
-                        response.sendRedirect("RegistroI2.jsp");
+                        FacesContext contex = FacesContext.getCurrentInstance();
+                        contex.getExternalContext().redirect( "/Proyecto/RegistroI2.jsp" );
+                        //response.sendRedirect("RegistroI2.jsp");
                     }
                     
                 } else {
+                    mess();
                     System.out.println("Falló");
                     System.out.println("Hubo error en la autenticacion:" + result.getResponseMessage());
                 }
             //TODO - Uncomment the print Statement below to print result.
             //System.out.println("The SaasService returned: "+result.getDataAsString());
         } catch (Exception ex) {
+            mess();
+            System.out.println("UU");
             ex.printStackTrace();
         }
 
+    }
+    
+    public void mess(){
+       FacesContext contex = FacesContext.getCurrentInstance();
+        FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Error de Autenticación",  null);
+        contex.addMessage(null, message); 
     }
 
     public String getEmail() {
