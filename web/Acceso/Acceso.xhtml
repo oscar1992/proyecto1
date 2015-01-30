@@ -12,18 +12,36 @@
         <h:body>
             <h:form>
                 <p:growl id="growl" life="2000"/>
-                <h:panelGrid columns="2">
+                <p:panelGrid style="margin-top:20px">
+                    <f:facet name="header">
+                        <p:row>
+                            <p:column colspan="2">Bienvenido</p:column>
+                        </p:row>
+                    </f:facet>
+                    
                     <p:row>
-                        <h:outputLabel value="Correo"/>
-                        <p:inputText id="email" value="#{ingreso.email}"/>
+                        <p:column>
+                            <h:outputText value="Correo"/> 
+                        </p:column>
+                        <p:column>
+                            <p:inputText id="email" value="#{ingreso.email}" styleClass=""/>
+                        </p:column>
                     </p:row>
                     <p:row>
-                    <p:inputText id="pass" value="#{ingreso.passwd}"/>
+                        <p:column>
+                            <h:outputText value="Pass"/>                        
+                        </p:column>
+                        <p:column>
+                            <p:password id="pass" value="#{ingreso.passwd}"/>
+                        </p:column>
                     </p:row>
+
                     <p:row>
-                    <p:commandButton value="Acceder" id="ajax" update="growl" actionListener="#{ingreso.ing()}" styleClass="ui-priority-primary"/>
+                        <p:column colspan="2">
+                            <p:commandButton value="Acceder" id="ajax" update="growl" actionListener="#{ingreso.ing()}" styleClass="ui-priority-primary"/>                            
+                        </p:column>
                     </p:row>
-                </h:panelGrid>
+                </p:panelGrid>
             </h:form>
         </h:body>
     </f:view>

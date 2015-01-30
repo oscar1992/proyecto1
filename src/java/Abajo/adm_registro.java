@@ -28,7 +28,7 @@ public class adm_registro {
             PreparedStatement st = (PreparedStatement) con.Ini_con().prepareStatement(sql);
             ResultSet rs = st.executeQuery();
             while (rs.next()) {
-                    pp=new Persona(rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8), rs.getInt(9), rs.getInt(1));
+                    pp=new Persona(rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8), String.valueOf(rs.getInt(9)), rs.getInt(1));
             }
            
             con.Fin_con();
@@ -76,7 +76,14 @@ public class adm_registro {
             PreparedStatement st = (PreparedStatement) con.Ini_con().prepareStatement(sql);
             ResultSet rs = st.executeQuery();
             while (rs.next()) {
-                pp = new Persona(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7), Integer.parseInt(rs.getString(8)), rs.getInt(9));
+                ArrayList<Rol> lis=L_Rol();
+                String nrol = null;
+                for(int i=0;i<lis.size();i++){
+                    if(rs.getInt(8)==lis.get(i).getId()){
+                        nrol=lis.get(i).getRol();
+                    }
+                }
+                pp = new Persona(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7), nrol, rs.getInt(9));
                 lista.add(pp);
             }
             con.Fin_con();
@@ -115,7 +122,7 @@ public class adm_registro {
             PreparedStatement st = (PreparedStatement) con.Ini_con().prepareStatement(sql);
             ResultSet rs = st.executeQuery();
             while (rs.next()) {
-                pp = new Persona(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7), Integer.parseInt(rs.getString(8)), rs.getInt(9));
+                pp = new Persona(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8), rs.getInt(9));
                 
             }
             con.Fin_con();

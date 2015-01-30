@@ -48,7 +48,7 @@ public class Servlet_IPersona extends HttpServlet {
             adm_registro adm=new adm_registro();
             System.out.println("ROL: "+rol);
             if(adm.I_Persona(nombre, correo, oficina, oficina, movil, institucion, institucion, rol, id)){
-                pp=new Persona(nombre, correo, oficina, oficina, movil, institucion, institucion, rol, id);                
+                pp=new Persona(nombre, correo, oficina, oficina, movil, institucion, institucion, String.valueOf(rol), id);                
                 request.getSession().setAttribute("Per", pp);
                 response.sendRedirect("Admin/Persona.jsp?ee=si");
             }else{

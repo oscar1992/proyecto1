@@ -1,0 +1,88 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+    <f:view>
+        <h:head>
+            <title>Administración</title>
+        </h:head>
+        <h:body>
+
+
+
+            <p:layout style="min-width:400px;min-height:900px;">
+                <p:layoutUnit position="north" resizable="false" size="110">
+                    <h1>Administración</h1>
+                </p:layoutUnit>
+
+                <p:layoutUnit position="west" resizable="true" size="150" minSize="40" maxSize="200">
+                    <h:form id="jj">
+                        <p:panelGrid style="margin-top:20px">
+                            <p:growl id="growl" life="2000"/>
+                            <p:row>
+                                <p:column>
+                                    <p:commandButton value="Usuarios" id="ajax" update=":ji" styleClass="ui-priority-primary" actionListener="#{personas.mos(eve)}"/>
+                                </p:column>                                    
+                            </p:row>
+                        </p:panelGrid>
+                    </h:form>
+                </p:layoutUnit>
+                               
+                <p:layoutUnit position="center" id="sur" rendered="true" styleClass="nestedUnit">
+                    <h:form id="jh">
+                        <p:growl id="msgs" showDetail="true"/>
+                        <p:dataTable var="per" value="#{personas.lista}" rowKey="#{per.id}" editable="true" id="tabla2" rendered="true">
+                            
+                            <p:column headerText="Nombre" >                                
+                                    <h:outputText value="#{per.nombre}"/>                               
+                            </p:column>
+                            <p:column headerText="Correo">
+                                <h:outputText value="#{per.correo}"/>
+                            </p:column>
+                            <p:column headerText="Fecha de Nacimiento">
+                                <h:outputText value="#{per.fecha_de_Nacimiento}"/>
+                            </p:column>
+                            <p:column headerText="Rol">
+                                <h:outputText value="#{per.rol}"/>
+                            </p:column>
+                            <p:column style="width:110px">
+                                <p:commandButton value="Modificar" id="ajax" update=":ji" actionListener="#{personas.mmm(eve, per.id)}" styleClass="ui-priority-primary">
+                                    
+                                </p:commandButton>
+                            </p:column>  
+                        </p:dataTable>                        
+                    </h:form>
+                    <br>
+                    </br>                    
+                    <h:form id="ji">    
+                        <p:growl id="msgs" showDetail="true"/>
+                        <p:dataTable rendered="#{personas.mt1}" id="tabla3" var="uni" value="#{personas.objp}" rowKey="#{uni.id}">
+                            <p:column headerText="Nombre" >
+                                <h:inputText value="#{uni.nombre}"/>
+                            </p:column>
+                            <p:column headerText="Correo" >
+                                <h:inputText value="#{uni.correo}"/>
+                            </p:column>
+                            <p:column headerText="Fecha de Nacimieto" >
+                                <h:inputText value="#{uni.fecha_de_Nacimiento}"/>
+                            </p:column>
+                            <p:column headerText="Rol" >
+                                <p:selectOneMenu id="rolpersona" value="#{uni.rol}" style="width:150px">
+                                    <f:selectItems value="#{uni.rol}"/>
+                                </p:selectOneMenu>
+                                       
+                            </p:column>
+                        </p:dataTable>
+                        <p:commandButton value="epgih" id="ajax" update="" styleClass="ui-priority-primary" actionListener="#{personas.mos(eve)}"/>
+                    </h:form>
+                </p:layoutUnit>
+
+            </p:layout>
+
+        </h:body>
+    </f:view>
+</html>
+

@@ -17,13 +17,13 @@ public class Persona {
     private String Telefono_Movil;
     private String Institución;
     private String Nivel_de_Estudios;
-    private int Rol;
+    private String Rol;
     private int id;
 
     public Persona() {
     }
 
-    public Persona(String Nombre, String Correo, String Fecha_de_Nacimiento, String Telefono_Oficina, String Telefono_Movil, String Institución, String Nivel_de_Estudios, int Rol, int id) {
+    public Persona(String Nombre, String Correo, String Fecha_de_Nacimiento, String Telefono_Oficina, String Telefono_Movil, String Institución, String Nivel_de_Estudios, String Rol, int id) {
         this.Nombre = Nombre;
         this.Correo = Correo;
         this.Fecha_de_Nacimiento = Fecha_de_Nacimiento;
@@ -92,11 +92,11 @@ public class Persona {
         this.Nivel_de_Estudios = Nivel_de_Estudios;
     }
 
-    public int getRol() {
+    public String getRol() {
         return Rol;
     }
 
-    public void setRol(int Rol) {
+    public void setRol(String Rol) {
         this.Rol = Rol;
     }
 
