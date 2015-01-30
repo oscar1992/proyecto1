@@ -16,7 +16,7 @@ import java.sql.SQLException;
 public class Conexion {
     Connection cone;
     String driver="com.mysql.jdbc.Driver";
-    String direccion="jdbc:mysql://localhost:3306/otri";
+    String direccion="jdbc:mysql://10.20.230.192:3306/otri";
     String usuario="root";
     String clave="";
     

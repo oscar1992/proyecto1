@@ -21,7 +21,7 @@
         <h1>Juju</h1>
         <%@ page import="org.netbeans.saas.*, org.netbeans.saas.google.*" %>
                 
-        <form onsubmit="return envia()" action="/Serv1" method="post">
+        <form onsubmit="return envia()" action="/proyecto1/Serv1" method="post">
             email<input type="text" name="email" value=""/>
             pass<input type="password" name="pass" value=""/>
             
