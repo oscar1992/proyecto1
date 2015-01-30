@@ -25,7 +25,7 @@ public class Lista_Rol {
     public List<Rol> getLista() {
         lista=adm.L_Rol();
         for(int i=0;i<lista.size();i++){
-            datos.
+            //datos.
         }
         return lista;
     }
